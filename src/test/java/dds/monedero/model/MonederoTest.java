@@ -18,11 +18,6 @@ public class MonederoTest {
   }
 
   @Test
-  void Poner() {
-    cuenta.poner(1500);
-  }
-
-  @Test
   void PonerMontoNegativo() {
     assertThrows(MontoNegativoException.class, () -> cuenta.poner(-1500));
   }
