@@ -33,14 +33,6 @@ public abstract class Movimiento {
     return this.fecha.equals(fecha);
   }
 
-  public boolean isDeposito() {
-    return elTipoDeMovimientoEs(TipoDeMovimiento.DEPOSITO);
-  }
-
-  public boolean isExtraccion() {
-    return elTipoDeMovimientoEs(TipoDeMovimiento.EXTRACCION);
-  }
-
   public abstract Boolean elTipoDeMovimientoEs(TipoDeMovimiento tipo);
 
   public double calcularValor(Cuenta cuenta) {
