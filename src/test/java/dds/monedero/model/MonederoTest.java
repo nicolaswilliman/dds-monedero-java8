@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MonederoTest {
   @Test
   void PonerMontoNegativo() {
-    Cuenta cuenta = obtenerCuentaConSaldo(0);
+    Cuenta cuenta = obtenerCuentaSinSaldo();
     assertThrows(MontoNegativoException.class, () -> cuenta.poner(-1500));
   }
 
   @Test
   void TresDepositos() {
-    Cuenta cuenta = obtenerCuentaConSaldo(0);
+    Cuenta cuenta = obtenerCuentaSinSaldo();
     cuenta.poner(1500);
     cuenta.poner(456);
     cuenta.poner(1900);
@@ -25,7 +25,7 @@ public class MonederoTest {
 
   @Test
   void MasDeTresDepositos() {
-    Cuenta cuenta = obtenerCuentaConSaldo(0);
+    Cuenta cuenta = obtenerCuentaSinSaldo();
     assertThrows(MaximaCantidadDepositosException.class, () -> {
       cuenta.poner(1500);
       cuenta.poner(456);
@@ -52,8 +52,12 @@ public class MonederoTest {
 
   @Test
   public void ExtraerMontoNegativo() {
-    Cuenta cuenta = obtenerCuentaConSaldo(0);
+    Cuenta cuenta = obtenerCuentaSinSaldo();
     assertThrows(MontoNegativoException.class, () -> cuenta.sacar(-500));
+  }
+
+  private Cuenta obtenerCuentaSinSaldo() {
+    return new Cuenta();
   }
 
   private Cuenta obtenerCuentaConSaldo(double saldo) {
