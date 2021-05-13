@@ -11,16 +11,7 @@ import java.util.List;
 
 public class Cuenta {
 
-  private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
-
-  public Cuenta() {
-    saldo = 0;
-  }
-
-  public Cuenta(double montoInicial) {
-    saldo = montoInicial;
-  }
 
   public void poner(double cuanto) {
     validarMonto(cuanto);
@@ -60,11 +51,9 @@ public class Cuenta {
   }
 
   public double getSaldo() {
-    return saldo;
-  }
-
-  public void setSaldo(double saldo) {
-    this.saldo = saldo;
+    return getMovimientos().stream()
+        .mapToDouble(Movimiento::getMonto)
+        .sum();
   }
 
   private void validarMonto(double monto) {
