@@ -51,9 +51,16 @@ public class Cuenta {
   }
 
   public double getSaldo() {
+    Double depositoTotal = montoTotalSegunTipo(TipoDeMovimiento.DEPOSITO);
+    Double extraccionTotal = montoTotalSegunTipo(TipoDeMovimiento.EXTRACCION);
+    return depositoTotal - extraccionTotal;
+  }
+
+  private double montoTotalSegunTipo(TipoDeMovimiento tipo) {
     return getMovimientos().stream()
-        .mapToDouble(Movimiento::getMonto)
-        .sum();
+    .filter(movimiento -> movimiento.elTipoDeMovimientoEs(tipo))
+    .mapToDouble(Movimiento::getMonto)
+    .sum();
   }
 
   private void validarMonto(double monto) {
